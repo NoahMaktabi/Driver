@@ -7,13 +7,12 @@ namespace Driver
         private int _year;
         private int _month;
         private int _day;
+        public DateTime DateOfBirth { get; private set; }
 
         public Birthday()
         {
             GetBirthday();
         }
-
-        public DateTime DateOfBirth { get; set; }
 
         private void GetYear()
         {

@@ -14,29 +14,6 @@ namespace Driver
             GetBirthday();
         }
 
-        private void GetYear()
-        {
-            const string msgToUser = "Vilket år är du född? \nSkriv ett fullständigt år t.ex. 1982";
-            const string invalidMsg = "Inmatningen är felaktig. \nSkriv ett fullständigt år t.ex. 1982";
-            _year = Input.GetInt(msgToUser, invalidMsg, 1900, DateTime.Now.Year);
-        }
-
-        private void GetMonth()
-        {
-            Console.Clear();
-            const string msgToUser = "Vilken månad är du född? \nSkriv en siffra mellan 1 - 12, t.ex. 5";
-            const string invalidMsg = "Inmatningen är felaktig. \nSkriv en siffra mellan 1 - 12, t.ex. 5";
-            _month = Input.GetInt(msgToUser, invalidMsg, 1, 12);
-        }
-
-        private void GetDay()
-        {
-            var maxDays = MaxDaysPerMonth(_month);
-            var msgToUser = "Vilken dag är du född? \nSkriv en siffra mellan 1 - " + maxDays + ", t.ex. 15";
-            var invalidMsg = "Inmatningen är felaktig. \nSkriv en siffra mellan 1 - " + maxDays + ", t.ex. 15";
-            _day = Input.GetInt(msgToUser, invalidMsg, 1, maxDays);
-        }
-
         public void GetBirthday()
         {
             GetYear();
@@ -46,7 +23,39 @@ namespace Driver
             DateOfBirth = DateTime.Parse(dateString);
         }
 
-        private static int MaxDaysPerMonth(int month)
+
+
+        #region HelperMethods
+        private void GetYear()
+        {
+            const string msgToUser = "Vilket år är du född? \nSkriv ett fullständigt år t.ex. 1982";
+            const string invalidMsg = "Inmatningen är felaktig. \nSkriv ett fullständigt år t.ex. 1982";
+            _year = Input.GetIntFromUserInput(msgToUser, invalidMsg, 1900, DateTime.Now.Year);
+        }
+
+        private void GetMonth()
+        {
+            Console.Clear();
+            const string msgToUser = "Vilken månad är du född? \nSkriv en siffra mellan 1 - 12, t.ex. 5";
+            const string invalidMsg = "Inmatningen är felaktig. \nSkriv en siffra mellan 1 - 12, t.ex. 5";
+            _month = Input.GetIntFromUserInput(msgToUser, invalidMsg, 1, 12);
+        }
+
+        private void GetDay()
+        {
+            var maxDays = MaxDaysInMonth(_month);
+            var msgToUser = "Vilken dag är du född? \nSkriv en siffra mellan 1 - " + maxDays + ", t.ex. 15";
+            var invalidMsg = "Inmatningen är felaktig. \nSkriv en siffra mellan 1 - " + maxDays + ", t.ex. 15";
+            _day = Input.GetIntFromUserInput(msgToUser, invalidMsg, 1, maxDays);
+        }
+
+
+        /// <summary>
+        /// Provided int representing a month ex: 4 for april. The method returns how many days are in the provided month.
+        /// </summary>
+        /// <param name="month"></param>
+        /// <returns>Returns how many days are in the provided month.</returns>
+        private static int MaxDaysInMonth(int month)
         {
             var maxDays = month switch
             {
@@ -67,5 +76,9 @@ namespace Driver
 
             return maxDays;
         }
+
+        #endregion
+
+
     }
 }

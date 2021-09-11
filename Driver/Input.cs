@@ -5,15 +5,17 @@ namespace Driver
     public class Input
     {
         /// <summary>
-        /// Writes msgToUser, then converts input into int, checks that int is between or equals min and max before returning.
+        /// Writes msgToUser, then request input from user,
+        /// then converts input into int,
+        /// checks that int is between or equals min and max before returning.
         /// invalidMsg must be provided in case the user types wrong input
         /// </summary>
-        /// <param name="msgToUser"></param>
-        /// <param name="invalidMsg"></param>
-        /// <param name="min"></param>
-        /// <param name="max"></param>
+        /// <param name="msgToUser">Msg to write to user before asking for input. Ex: Type your age,</param>
+        /// <param name="invalidMsg">Msg to provide in case the input is not a number or not inside the min/max param</param>
+        /// <param name="min">Minimum number allowed</param>
+        /// <param name="max">Maximum number allowed</param>
         /// <returns>Valid int from the criteria defined in the parameters</returns>
-        public static int GetInt(string msgToUser, string invalidMsg, int min, int max)
+        public static int GetIntFromUserInput(string msgToUser, string invalidMsg, int min, int max)
         {
             Console.WriteLine(msgToUser);
             var input = Console.ReadLine();

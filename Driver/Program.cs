@@ -11,8 +11,6 @@ namespace Driver
             program.Start();
         }
 
-
-
         private static void PrintLogo()
         {
             const string logo = @"
